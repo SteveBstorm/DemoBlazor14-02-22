@@ -1,0 +1,58 @@
+﻿@page "/product"
+
+<h3 style="color:red;">Page Product</h3>
+
+<input type="text" @bind="LastName" />
+
+<textarea @bind="LastName"></textarea>
+@if (LastName != "")
+{
+    <p>Bonjour : @LastName</p>
+
+}
+
+
+<p>@Toto</p>
+<div class="col">
+    <div class="col-6">
+        @if (MyList.Count() > 0)
+        {
+            <div style="height: 350px; overflow-y:scroll">
+                <table class="table table-stripped">
+                    <tr>
+                        <td>Product Name</td>
+                        <td>Product Price</td>
+                    </tr>
+                    @* @foreach(DataAccessLayer.Entities.Product p in MyList)
+                        {
+                        <tr>
+                        <td>@p.Name</td>
+                        <td>@p.Price</td>
+                        </tr>
+                        }*@
+
+                    <Virtualize Items="MyList" Context="p">
+                        <tr>
+                            <td @onclick='()=>setId(p.Id)'>@p.Name</td>
+                            <td>@p.Price</td>
+                        </tr>
+                    </Virtualize>
+                </table>
+            </div>
+        }
+    </div>
+    <div class="col-6">
+        <Reusable Valeur=@Id></Reusable>
+    </div>
+</div>
+
+
+
+<button @onclick="InsertDB">Insertion Données</button>
+@code {
+    public int Id { get; set; }
+    public void setId(int id)
+    {
+        Id = id;
+    }
+}

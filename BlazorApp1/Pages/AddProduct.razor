@@ -1,0 +1,18 @@
+﻿@page "/addproduct"
+@inherits AddProductBase
+
+<h3>AddProduct</h3>
+
+<EditForm Model="MyForm" OnValidSubmit="SubmitForm">
+    <DataAnnotationsValidator />
+    Nom Produit : <InputText DisplayName=@MyForm.Name @bind-Value=MyForm.Name />
+    Prix Produit : <InputNumber @bind-Value=MyForm.Price />
+    <label asp-validation-for="MyForm.Price">test</label>
+    <button type="submit">Valider</button>
+    
+    <ValidationSummary />
+</EditForm>
+
+@code {
+
+}

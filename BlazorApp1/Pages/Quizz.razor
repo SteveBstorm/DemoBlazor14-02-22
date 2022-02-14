@@ -1,0 +1,31 @@
+﻿@page "/quizz"
+
+@if (User is null)
+{
+    <p>Quel est votre nom ?</p>
+    <input type="text" @bind="User" />
+}
+else
+{
+    <h3>Bonjour @User,  @infoPos </h3>
+
+}
+
+<p>@currentQuestion</p>
+
+
+@if (pos > Questions.Count())
+{
+    <ul>
+        @foreach (string s in Reponse)
+        {
+            <li>@s</li>
+        }
+    </ul>
+}
+else
+{
+    <button @onclick='()=>Answer("oui")'>Oui</button>
+    <button @onclick='()=>Answer("non")'>Non</button>
+}
+

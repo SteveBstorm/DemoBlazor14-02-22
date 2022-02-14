@@ -1,0 +1,22 @@
+﻿@using DataAccessLayer.Abstraction
+<h3>Reusable</h3>
+
+<p>Product Id= @Valeur</p>
+
+<p>Product Name : @CurrentProduct.Name</p>
+<p>Product Price : @CurrentProduct.Price</p>
+
+@code {
+    [Parameter]
+    public int Valeur { get; set; }
+
+    [Inject]
+    public IProductRepo _repo { get; set; }
+
+    public DataAccessLayer.Entities.Product CurrentProduct{ get; set; }
+
+    protected override void OnParametersSet()
+    {
+        CurrentProduct = _repo.GetById(Valeur);
+    }
+}
